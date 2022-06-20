@@ -4,9 +4,9 @@ I wanted to create a map with pins that indicate the destinations that I would l
 
 
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running and a walkthrough of the code.}
 
-[Software Demo Video](http://youtube.link.goes.here)
+
+[Bucket List Map Video](https://www.youtube.com/watch?v=kqqFpc0VSq4)
 
 # Development Environment
 
@@ -26,5 +26,5 @@ I wanted to create a map with pins that indicate the destinations that I would l
 
 
 * Add photos/videos to the places I have already visited.
-* finish adding all the places I have been
+* Finish adding all the places I have been
 * Add filters so I can display specific destinations 
