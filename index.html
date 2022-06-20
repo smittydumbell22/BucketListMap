@@ -1,0 +1,386 @@
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+   <title>ArcGIS API for JavaScript Tutorials: Display a map</title>
+
+   <style>
+      html,
+      body,
+      #viewDiv {
+         padding: 0;
+         margin: 0;
+         height: 100%;
+         width: 100%;
+      }
+   </style>
+
+   <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
+   <script src="https://js.arcgis.com/4.23/"></script>
+
+   <script>
+      require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer"], function (esriConfig, Map, MapView, Graphic, GraphicsLayer) {
+
+         esriConfig.apiKey = "YOUR_API_KEY";
+
+         const map = new Map({
+            basemap: "arcgis-topographic" // Basemap layer service
+         });
+
+         const view = new MapView({
+            map: map,
+            center: [-118.805, 34.027], // Longitude, latitude
+            zoom: 2, // Zoom level
+            container: "viewDiv" // Div element
+         });
+         const graphicsLayer = new GraphicsLayer();
+         map.add(graphicsLayer);
+
+   
+         const simpleMarkerSymbol = {
+            type: "simple-marker",
+            color: [226, 119, 40],  // Orange
+            outline: {
+               color: [255, 255, 255], // White
+               width: 1
+            }
+         };
+
+         const bucketListSymbol = {
+            type: "simple-marker",
+            color: [226, 119, 40],  // Orange
+            outline: {
+               color: [255, 255, 255], // White
+               width: 1
+            }
+         };
+
+         const visitedSymbol = {
+            type: "simple-marker",
+            color: [144, 66, 245],  // purple
+            outline: {
+               color: [255, 255, 255], // White
+               width: 1
+            }
+         };
+
+         const Symbol = {
+            type: "simple-marker",
+            color: [0, 255, 0],  // 
+            outline: {
+               color: [0, 0, 0], // White
+               width: 1
+            }
+         };
+         const popupTemplate = {
+            title: "{Name}",
+            content: "{Description}"
+         }
+          
+
+         const pointGraphic = new Graphic({
+            geometry:  { //Dana Point, California
+               type: "point",
+               longitude: -117.698105,
+               latitude: 33.466972
+            },
+   
+            symbol: visitedSymbol,
+            attributes: {
+               Name: "Dana Point, California",
+               Description: "This is my family's favorite place for rest and relaxation"
+            },
+            popupTemplate: popupTemplate
+         });
+
+         const point2Graphic = new Graphic({
+            geometry: { //Machu Picchu, Peru
+               type: "point",
+               longitude: -72.545128,
+               latitude: -13.163068
+            },
+            symbol: bucketListSymbol,
+            attributes:  {
+               Name: "Machu Picchu, Peru",
+               Description: "This is my number one bucket list destination"
+            },
+            popupTemplate: popupTemplate
+         });
+
+         const point3Graphic = new Graphic({
+            geometry:
+            { // Haleakalā, Maui, Hawaii
+               type: "point",
+               longitude: -156.173325,
+               latitude: 20.701283
+            },
+            symbol: visitedSymbol,
+            attributes:
+            {
+               Name: "Haleakalā, Maui, Hawaii",
+               Description: "One of my favorite vacations. Everything seems to slow down for island life."
+            },
+            popupTemplate: popupTemplate
+         });
+
+         const point4Graphic = new Graphic({
+            geometry:  { //The Sea of Galilee, Israel
+               type: "point",
+               longitude: 35.5833,
+               latitude: 32.8333
+            }, 
+            symbol: visitedSymbol, 
+            attributes:  {
+               Name: "Sea Of Galilee",
+               Description: "Probably my favorite place I visited in Israel"
+            },
+    
+            popupTemplate: popupTemplate
+         });
+         const point5Graphic = new Graphic({
+            geometry:  { //Ensenada, Mexico
+               type: "point",
+               longitude: -116.607681,
+               latitude: 31.865858
+            }, 
+            symbol: simpleMarkerSymbol, 
+            attributes: {
+               Name: "Ensenada, Mexico",
+               Description: "While Mexico has plenty of beauty, this was not my favorite place."
+            },
+    
+            popupTemplate: popupTemplate
+         });
+         const point6Graphic = new Graphic({
+            geometry:  { // Cork, Ireland
+               type: "point",
+               longitude: -8.468399,
+               latitude: 51.903614
+            }, 
+            symbol: visitedSymbol, 
+            attributes:  {
+               Name: "Ireland",
+               Description: "One of my favorite places since my husband and I visited for our honeymoon."
+            },
+    
+            popupTemplate: popupTemplate
+         });
+         const point7Graphic = new Graphic({
+            geometry: { // Golden Hand Bridge, Vietnam
+               type: "point",
+               longitude: 107.995300,
+               latitude: 15.998900
+            }, 
+            symbol: bucketListSymbol, 
+            attributes: {
+               Name: "Vietnam",
+               Description: "I am told it is beautiful and inexpensive to vacation in Vietnam."
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point8Graphic = new Graphic({
+            geometry: { // Shibuya Crossing, Tokyo, Japan
+               type: "point",
+               longitude: 139.69241,
+               latitude: 35.666762
+            }, 
+            symbol: bucketListSymbol, 
+            attributes: {
+               Name: "Japan",
+               Description: "I would like to visit Japan when the cherry trees are blooming."
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point9Graphic = new Graphic({
+            geometry: { // Jiankou, The Great Wall of China
+               type: "point",
+               longitude: 116.38606487,
+               latitude: 39.89350454
+            }, 
+            symbol: bucketListSymbol, 
+            attributes: {
+               Name: "The Great Wall of China",
+               Description: "This is in my top 5 bucket list destinations"
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point10Graphic = new Graphic({
+            geometry: { //The Grand Ol' Opry Nashville, Tennessee
+            type: "point",
+            longitude: -86.692109,
+            latitude: 36.206857
+         }, 
+            symbol: bucketListSymbol, 
+            attributes:  {
+               Name: "Grand Ol' Opery Nashville, Tennessee",
+               Description: "I have always wanted to visit the Grand Ol' Opery. We were in Nashville during the COVID lockdown, and we could not go inside "
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point11Graphic = new Graphic({
+            geometry:  { //Gum Wall Seattle, Washington
+               type: "point",
+               longitude: -122.34036,
+               latitude: 47.608425
+            }, 
+            symbol: visitedSymbol, 
+            attributes:  {
+               Name: "Gum Wall Seattle, Washington",
+               Description: "I have been there and contributed a chewed bit of gum to the gross attraction."
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point12Graphic = new Graphic({
+            geometry:  { //Taj Mahal, India
+               type: "point",
+               longitude: 78.042068,
+               latitude: 27.173891
+            }, 
+            symbol: bucketListSymbol, 
+            attributes: {
+               Name: "Tahj Mahal",
+               Description: "I hope to visit India one day. "
+            },
+   
+            popupTemplate: popupTemplate
+         });
+         const point13Graphic = new Graphic({
+            geometry: { //Galapagos Islands,  San Cristobal, Ecuador
+               type: "point",
+               longitude: -89.413605,
+               latitude: -0.828066
+            }, 
+            symbol: bucketListSymbol, 
+            attributes:  {
+               Name: "Galapagos",
+               Description: "These islands and the unique animals that live there have always been something I would like to see."
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point14Graphic = new Graphic({
+            geometry: { //Cape Horn, Chile
+               type: "point",
+               longitude: -67.2667,
+               latitude: -55.983333
+            }, 
+            symbol: bucketListSymbol, 
+            attributes:  {
+               Name: "Cape Horn, Chile",
+               Description: "I would like to visit the tip of South America"
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point15Graphic = new Graphic({
+            geometry: { //Coromandel Peninsula, Waikato,New Zealand
+               type: "point",
+               longitude: 175.583333,
+               latitude: -36.833333
+            }, 
+            symbol: bucketListSymbol, 
+            attributes: {
+               Name: "New Zealand",
+               Description: "I want to visit a Hobbit village, and see the beautiful places shown in movies like Jurassic Park and Lost"
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point16Graphic = new Graphic({
+            geometry:  { //Great Barrier Reef, Green Island Australia
+               type: "point",
+               longitude: 114.983,
+               latitude: -30.217
+            }, 
+            symbol: bucketListSymbol, 
+            attributes: {
+               Name: "Great Barrier Reef, Australia",
+               Description: "Scuba diving terrifies me, but I think I would still like to check out the Great Barrier Reef"
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point17Graphic = new Graphic({
+            geometry: { //Grand Canyon
+               type: "point",
+               longitude: -112.125198,
+               latitude: 36.056198
+            }, 
+            symbol: bucketListSymbol, 
+            attributes:  {
+               Name: "Grand Canyon",
+               Description: "While I have visited the Grand Canyon several times, I have a goal to one day hike rim to rim."
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point18Graphic = new Graphic({
+            geometry: { //Redwood Forest, California (Muir Woods National Monument)
+               type: "point",
+               longitude: -122.58111,
+               latitude: 37.897020
+            }, 
+            symbol: bucketListSymbol, 
+            attributes:  {
+               Name: "Red Wood Forest, California",
+               Description: "I would like to drive up the Pacific Coast Highway and stop and see the Red Wood Forest along the way."
+            }, 
+            popupTemplate: popupTemplate
+         });
+         const point19Graphic = new Graphic({
+            geometry: { //Statue of Liberty, New York City
+               type: "point",
+               longitude: -74.044502,
+               latitude: 40.689247
+            }, 
+            symbol: visitedSymbol, 
+            attributes: {
+               Name: "Statue of Liberty, New York City",
+               Description: "I have seen the Statue of Liberty a few times."
+            },
+    
+            popupTemplate: popupTemplate
+         });
+         const point20Graphic = new Graphic({
+            geometry: { //The Acropolis, Athens, Greece
+               type: "point",
+               longitude: 23.7257,
+               latitude: 37.9715
+            }, 
+            symbol: bucketListSymbol, 
+            attributes: {
+               Name: "The Acropolis, Athens, Greece",
+               Description: "I would love to visit Greece, especially Athens"
+            }, 
+            popupTemplate: popupTemplate
+         });
+         graphicsLayer.add(pointGraphic);
+         graphicsLayer.add(point2Graphic);
+         graphicsLayer.add(point3Graphic);
+         graphicsLayer.add(point4Graphic);
+         graphicsLayer.add(point5Graphic);
+         graphicsLayer.add(point6Graphic);
+         graphicsLayer.add(point7Graphic);
+         graphicsLayer.add(point8Graphic);
+         graphicsLayer.add(point9Graphic);
+         graphicsLayer.add(point10Graphic);
+         graphicsLayer.add(point11Graphic);
+         graphicsLayer.add(point12Graphic);
+         graphicsLayer.add(point13Graphic);
+         graphicsLayer.add(point14Graphic);
+         graphicsLayer.add(point15Graphic);
+         graphicsLayer.add(point16Graphic);
+         graphicsLayer.add(point17Graphic);
+         graphicsLayer.add(point18Graphic);
+         graphicsLayer.add(point19Graphic);
+         graphicsLayer.add(point20Graphic);
+       
+
+
+
+      });
+   </script>
+
+</head>
+
+<body>
+   <div id="viewDiv"></div>
+</body>
+
+</html>
